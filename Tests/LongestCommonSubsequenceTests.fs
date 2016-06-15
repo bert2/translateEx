@@ -1,8 +1,8 @@
 ﻿module LongestCommonSubsequenceTests
 
-open NUnit.Framework
+open Xunit
 open FsCheck
-open FsCheck.NUnit
+open FsCheck.Xunit
 open LongestCommonSubsequence
 
 [<Literal>]
@@ -10,9 +10,9 @@ let maxLength = 12
 [<Literal>]
 let numTests = 1000
 
-[<Test>]
+[<Fact>]
 let ``LCS of "ABCDE" and "ABXDY" is "ABD"``() =
-    Assert.AreEqual("ABD", strGet "ABCDE" "ABXDY")
+    Assert.Equal("ABD", strGet "ABCDE" "ABXDY")
 
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
 let ``Identity`` (x:char list) = 
@@ -30,9 +30,4 @@ let ``Idempotence`` (x:char list) (y:char list) =
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
 let ``Prepending a char to both inputs gives an LCS starting with that char`` (x:char list) (y:char list) c = 
     let lcs = get (c::x) (c::y)
-    List.head lcs = c
-
-//[<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
-//let ``LCS is a subset of both its inputs`` (x:char list) (y:char list) c = 
-//    let lcs = get (c::x) (c::y)
-    
+    List.head lcs = c    
