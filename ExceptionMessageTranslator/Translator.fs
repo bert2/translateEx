@@ -16,13 +16,13 @@ let private getSimilarityWithLcs (string1:string) (string2:string) =
     let lcs = lcs string1 string2
     (double lcs.Length) / (double maxLength)
 
-let private getSimilarityWithLevenshtein (string1:string) (string2:string) =
+let private getSimilarity (string1:string) (string2:string) =
     let maxDist = max string1.Length string2.Length
     let actualDist = editDistance string1 string2
     1.0 - (double actualDist) / (double maxDist)
 
 let getMatchScore (text:string) (Resource (key, resourceText)) =
-    let score = MatchScore (getSimilarityWithLevenshtein text resourceText)
+    let score = MatchScore (getSimilarity text resourceText)
     MatchResult (Resource (key, resourceText), score)
 
 let getMatchScores (exceptionMessage:string) (sourceMessages:Resource seq) =
