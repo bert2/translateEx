@@ -1,4 +1,5 @@
-﻿module LevenshteinDistance
+﻿// Implementation taken from https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#F.23
+module LevenshteinDistance
 
 let inline min3 one two three = 
     if one < two && one < three then one
