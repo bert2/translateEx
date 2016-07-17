@@ -29,3 +29,4 @@ To Do
 		* Host with Azure
 	* WPF or Xamarin app
 * Make .NET framework version configurable
+* Don't throw. Catch all possible exceptions and propagte errors with monadic binds.

@@ -13,18 +13,19 @@ let private assembly = typeof<Exception>.Assembly
 
 let private resourceManager = new ResourceManager(assembly.GetName().Name, assembly)
 
-let makeResource key text = Resource (Key key, text)
-
 let private toResource (entry:DictionaryEntry) =
-    makeResource (string entry.Key) (string entry.Value)
+    Resource (Key <| string entry.Key, string entry.Value)
 
-let getMessages (culture:string) =
+let private loadResources culture =
     let cultureInfo = CultureInfo.CreateSpecificCulture culture
-    let resources = resourceManager.GetResourceSet(cultureInfo, true, false)
+    resourceManager.GetResourceSet(cultureInfo, true, true)
 
-    if resources = null then 
-        failwith (sprintf "Failed to load resources for culture %A." culture)
-
-    resources
+let getMessageResources culture =
+    culture
+    |> loadResources
     |> Seq.cast<DictionaryEntry>
     |> Seq.map toResource
+
+let getMessage culture (Key resourceKey) =
+    let resources = loadResources culture
+    resources.GetString(resourceKey)

@@ -58,6 +58,7 @@
     <Compile Include="LevenshteinDistance.fs" />
     <Compile Include="LongestCommonSubsequence.fs" />
     <Compile Include="ExceptionMessages.fs" />
+    <Compile Include="Matcher.fs" />
     <Compile Include="Translator.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
