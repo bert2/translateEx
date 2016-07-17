@@ -19,8 +19,8 @@ To Do
 		-> will do: replace with proper LCS implementation
 * Implement actual translation when LCS is fast enough
 	* Get localized messages to match: http://stackoverflow.com/a/13955941/1025555
-	* Make language to translate to configurable
-	* Make language to translate from optional
+	* Done: make language to translate from configurable
+	* Make language to translate to optional
 	* Return single best match or all/n matches ordered by matching score
 * Implement multiple interfaces
 	* API
