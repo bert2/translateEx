@@ -1,26 +1,22 @@
 ﻿Exception Message Translator
-
 ============================
-
-
 
 Translates a localized exception message to English.
 
-
-
 To Do
-
 -----
 
 * Longest common subsequence algorithm way too slow
-	* Implement dynamic programming approach (utilizing Memoization/Monads)
-		-> Memoization: http://www.fssnip.net/8P
-		-> Memo Monad: http://www.fssnip.net/3v
-* Having two LCS methods (one for strings and one for other lists) is ugly
-	* Is there a way to have one for both?
-		-> Pattern matching can check the runtime type
-	* Is overloading possible?
-		-> Not w/o classes
+	* Implement dynamic programming approach
+		-> Memoization with dictionary: http://www.fssnip.net/8P
+			-> done: still too slow because (list1, list2).GetHashCode() is slow for long lists
+		-> Memo monad: http://www.fssnip.net/3v
+			-> won't do: overly complex
+		-> Memoization with 2D array
+			-> will do: only return LCS length, actual LCS not needed
+	* Utilize read-to-use F# implementation of Levenshtein distance
+		-> done: faster than current LCS implementation, but does not work as good with string placeholders ("{0}" etc.)
+		-> will do: replace with proper LCS implementation
 * Implement actual translation when LCS is fast enough
 	* Get localized messages to match: http://stackoverflow.com/a/13955941/1025555
 	* Make language to translate to configurable
