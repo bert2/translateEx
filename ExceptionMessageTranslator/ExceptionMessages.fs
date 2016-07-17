@@ -15,10 +15,16 @@ let private resourceManager = new ResourceManager(assembly.GetName().Name, assem
 
 let makeResource key text = Resource (Key key, text)
 
-let private toResource (dictionaryEntry:DictionaryEntry) =
-    makeResource (string dictionaryEntry.Key) (string dictionaryEntry.Value)
+let private toResource (entry:DictionaryEntry) =
+    makeResource (string entry.Key) (string entry.Value)
 
 let getMessages (culture:string) =
-    resourceManager.GetResourceSet(new CultureInfo(culture), true, true)
+    let cultureInfo = CultureInfo.CreateSpecificCulture culture
+    let resources = resourceManager.GetResourceSet(cultureInfo, true, false)
+
+    if resources = null then 
+        failwith (sprintf "Failed to load resources for culture %A." culture)
+
+    resources
     |> Seq.cast<DictionaryEntry>
     |> Seq.map toResource
