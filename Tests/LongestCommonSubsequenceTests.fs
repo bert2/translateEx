@@ -1,4 +1,4 @@
-﻿module LongestCommonSubsequenceTests
+﻿module LCS
 
 open Xunit
 open FsCheck
@@ -6,28 +6,28 @@ open FsCheck.Xunit
 open LongestCommonSubsequence
 
 [<Literal>]
-let maxLength = 12
+let maxLength = 30
 [<Literal>]
 let numTests = 1000
 
 [<Fact>]
-let ``LCS of "ABCDE" and "ABXDY" is "ABD"``() =
-    Assert.Equal("ABD", strGet "ABCDE" "ABXDY")
+let ``.. of "ABCDE" and "ABXDY" is "ABD"``() =
+    Assert.Equal("ABD", lcs "ABCDE" "ABXDY")
 
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
-let ``Identity`` (x:char list) = 
-    get x x = x
+let ``.. has identity property`` (x:char list) = 
+    lcs' x x = x
 
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
-let ``Absorber`` (x:char list) = 
-    get x [] = [] && get [] x = []
+let ``.. has absorber property`` (x:char list) = 
+    lcs' x [] = [] && lcs' [] x = []
 
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
-let ``Idempotence`` (x:char list) (y:char list) = 
-    let lcs = get x y
-    get x lcs = lcs && get y lcs = lcs
+let ``.. has idempotence property`` (x:char list) (y:char list) = 
+    let lcs = lcs' x y
+    lcs' x lcs = lcs && lcs' y lcs = lcs
 
 [<Property(QuietOnSuccess = true, EndSize = maxLength, MaxTest = numTests)>]
-let ``Prepending a char to both inputs gives an LCS starting with that char`` (x:char list) (y:char list) c = 
-    let lcs = get (c::x) (c::y)
+let ``.. starts with the char that has been prepended to both intputs`` (x:char list) (y:char list) c = 
+    let lcs = lcs' (c::x) (c::y)
     List.head lcs = c    

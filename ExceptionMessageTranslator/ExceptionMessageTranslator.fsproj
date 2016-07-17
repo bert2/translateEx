@@ -54,7 +54,10 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="LevenshteinDistance.fs" />
     <Compile Include="LongestCommonSubsequence.fs" />
+    <Compile Include="ExceptionMessages.fs" />
+    <Compile Include="Translator.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />

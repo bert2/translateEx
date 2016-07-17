@@ -52,6 +52,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="LevenshteinDistanceTests.fs" />
     <Compile Include="LongestCommonSubsequenceTests.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
