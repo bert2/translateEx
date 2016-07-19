@@ -8,4 +8,4 @@ let translate toCulture fromCulture message =
     let (MatchResult (Resource (key, _), _)) = getBestMatch message resources
     getMessage toCulture key
 
-let translateToEng = translate "en-GB"
+let translateToEng = translate "en"

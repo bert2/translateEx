@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>3879c546-4537-42e9-b3ac-179f5846bda3</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ExceptionMessageTranslator</RootNamespace>
-    <AssemblyName>ExceptionMessageTranslator</AssemblyName>
+    <ProjectGuid>afd45e65-67aa-4a2a-b4f0-a1688764066d</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ExceptionMessages</RootNamespace>
+    <AssemblyName>ExceptionMessages</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
-    <Name>ExceptionMessageTranslator</Name>
-    <TargetFrameworkProfile />
+    <Name>ExceptionMessages</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,9 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Debug\ExceptionMessageTranslator.XML</DocumentationFile>
-    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\Debug\ExceptionMessages.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,9 +31,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Release\ExceptionMessageTranslator.XML</DocumentationFile>
-    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\Release\ExceptionMessages.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -55,31 +50,40 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="LevenshteinDistance.fs" />
-    <Compile Include="LongestCommonSubsequence.fs" />
-    <Compile Include="Matcher.fs" />
-    <Compile Include="Translator.fs" />
-    <Compile Include="Program.fs" />
-    <None Include="App.config" />
-    <Content Include="packages.config" />
-    <None Include="README.md" />
+    <Compile Include="ExceptionMessages.fs" />
+    <EmbeddedResource Include="mscorlib.ar.461.resources" />
+    <EmbeddedResource Include="mscorlib.cs.461.resources" />
+    <EmbeddedResource Include="mscorlib.da.461.resources" />
+    <EmbeddedResource Include="mscorlib.de.461.resources" />
+    <EmbeddedResource Include="mscorlib.el.461.resources" />
+    <EmbeddedResource Include="mscorlib.en.461.resources" />
+    <EmbeddedResource Include="mscorlib.es.461.resources" />
+    <EmbeddedResource Include="mscorlib.fi.461.resources" />
+    <EmbeddedResource Include="mscorlib.fr.461.resources" />
+    <EmbeddedResource Include="mscorlib.he.461.resources" />
+    <EmbeddedResource Include="mscorlib.hu.461.resources" />
+    <EmbeddedResource Include="mscorlib.it.461.resources" />
+    <EmbeddedResource Include="mscorlib.ja.461.resources" />
+    <EmbeddedResource Include="mscorlib.ko.461.resources" />
+    <EmbeddedResource Include="mscorlib.nl.461.resources" />
+    <EmbeddedResource Include="mscorlib.no.461.resources" />
+    <EmbeddedResource Include="mscorlib.pl.461.resources" />
+    <EmbeddedResource Include="mscorlib.pt.461.resources" />
+    <EmbeddedResource Include="mscorlib.pt-BR.461.resources" />
+    <EmbeddedResource Include="mscorlib.ru.461.resources" />
+    <EmbeddedResource Include="mscorlib.sv.461.resources" />
+    <EmbeddedResource Include="mscorlib.tr.461.resources" />
+    <EmbeddedResource Include="mscorlib.zh-Hans.461.resources" />
+    <EmbeddedResource Include="mscorlib.zh-Hant.461.resources" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExceptionMessages\ExceptionMessages.fsproj">
-      <Name>ExceptionMessages</Name>
-      <Project>{afd45e65-67aa-4a2a-b4f0-a1688764066d}</Project>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
