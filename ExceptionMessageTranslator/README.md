@@ -20,6 +20,21 @@ To Do
 * Implement actual translation when LCS is fast enough
 	* Get localized messages to match: http://stackoverflow.com/a/13955941/1025555
 	* Done: make language to translate from configurable
+	* Retrieving the translation with GetResourceSet() requires installing all language packs
+		-> Create new resource file from .NET framework installers
+			-> download .NET framework offline installer for all languages
+			-> unpack them with 7zip
+			-> unpack one of the .cab files
+			-> open mscorlib.resources.dll in ILSpy and save resources as mscorlib.xx-XX.resources binary
+				-> don't let name end with ".xx-XX.resources" or CSC will create satellite assemblies that are loaded depending on the current culture
+				-> use "_xx-XX.resources" to let CSC embed the resources
+			-> better add framework version to the file name
+			-> add *.resources to project
+			-> build project
+			-> check name of resource with ILSpy ("<Namespace>.<file name>")
+			-> find resources matching input culture with Assembly.GetManifestResourceNames()
+			-> load resources with "new ResourceManager(<resource name>, ...)"
+
 	* Make language to translate to optional
 	* Return single best match or all/n matches ordered by matching score
 * Implement multiple interfaces
