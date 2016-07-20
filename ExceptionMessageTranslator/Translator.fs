@@ -3,9 +3,16 @@
 open ExceptionMessages
 open Matcher
 
-let translate toCulture fromCulture message =
-    let resources = getMessageResources fromCulture
-    let (MatchResult (Resource (key, _), _)) = getBestMatch message resources
-    getMessage toCulture key
+let private getResourceKey (MatchResult (Id key, _)) = key
+
+let private toMatchCandidate (Resource (key, text)) =
+    MatchCandidate (Id key, text)
+
+let translate toCulture fromCulture exceptionMessage =
+    getMessageResources fromCulture
+    |> Seq.map toMatchCandidate
+    |> findBestMatch exceptionMessage
+    |> getResourceKey
+    |> getMessage toCulture
 
 let translateToEng = translate "en"
