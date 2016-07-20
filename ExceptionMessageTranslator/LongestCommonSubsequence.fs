@@ -8,6 +8,9 @@ let private longest xs ys = if List.length xs > List.length ys then xs else ys
 let private memoize f = 
     let cache = new Dictionary<_, _>()
     fun x y ->
+        // Using the two list arguments as cache key is very inefficient. Either
+        // because GetHashCode() performs to slow for long lists or because we
+        // get to many hash collisions.
         let key = (x, y)
         let found, value = cache.TryGetValue(key)
         if found then
