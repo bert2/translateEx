@@ -50,7 +50,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="Culture.fs" />
+    <Compile Include="Language.fs" />
     <Compile Include="ResourceLoader.fs" />
     <Compile Include="ExceptionMessages.fs" />
     <EmbeddedResource Include="mscorlib.ar.461.resources" />

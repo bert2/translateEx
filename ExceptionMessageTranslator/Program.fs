@@ -6,7 +6,10 @@ open Translator
 type Args = Args of Language.T option * Language.T option * string
 
 let private gatherUserInputs =
-    Args (Language.create "de", Language.create "fr", "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
+    Args (
+        Language.create "de", 
+        Language.create "fr", 
+        "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
 
 let private parseArguments (argv:string []) =
     match argv.Length with
@@ -17,9 +20,9 @@ let private parseArguments (argv:string []) =
 
 [<EntryPoint>]
 let main argv = 
-    let (Args (targetLanguage, sourceLanguage, message)) = parseArguments argv
-    printfn "Translating message from %A to %A" sourceLanguage targetLanguage
-    let translatedMessage = translate targetLanguage sourceLanguage message
+    let (Args (targetLang, sourceLang, message)) = parseArguments argv
+    printfn "Translating message from %A to %A" sourceLang targetLang
+    let translatedMessage = translate targetLang sourceLang message
     printfn "Translation:"
     printfn "%A" translatedMessage
 
