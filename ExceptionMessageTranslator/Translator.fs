@@ -8,11 +8,9 @@ let private getResourceKey (MatchResult (Id key, _)) = key
 let private toMatchCandidate (Resource (key, text)) =
     MatchCandidate (Id key, text)
 
-let translate toCulture fromCulture exceptionMessage =
-    getMessageResources fromCulture
+let translate targetLanguage sourceLanguage exceptionMessage =
+    getMessageResources sourceLanguage
     |> Seq.map toMatchCandidate
     |> findBestMatch exceptionMessage
     |> getResourceKey
-    |> getMessage toCulture
-
-let translateToEng = translate "en"
+    |> getMessage targetLanguage
