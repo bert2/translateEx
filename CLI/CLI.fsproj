@@ -8,7 +8,7 @@
     <ProjectGuid>196855b1-b468-454f-9219-f299925ba1b6</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>CLI</RootNamespace>
-    <AssemblyName>CLI</AssemblyName>
+    <AssemblyName>translateEx</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
