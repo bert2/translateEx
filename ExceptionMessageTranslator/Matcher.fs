@@ -12,6 +12,8 @@ type MatchCandidate<'T> = MatchCandidate of Id<'T> * string
 
 type MatchResult<'T> = MatchResult of Id<'T> * MatchScore
 
+let private id (MatchResult (Id id, _)) = id
+
 let private score (MatchResult (_, score)) = score
 
 // Cannot use this ATM, because current LCS implementation is too slow.
@@ -35,3 +37,4 @@ let findBestMatch target candidates =
     |> Seq.map (getMatchScore target)
     |> Seq.sortByDescending score
     |> Seq.head
+    |> id
