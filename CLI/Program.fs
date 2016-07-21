@@ -21,10 +21,10 @@ let private parseArguments (argv:string []) =
 [<EntryPoint>]
 let main argv = 
     let (Args (targetLang, sourceLang, message)) = parseArguments argv
-    printfn "Translating message from %A to %A" sourceLang targetLang
+    printfn "Translating message from '%s' to '%s'..." (Language.toString sourceLang) (Language.getSafe targetLang)
     let translatedMessage = translate targetLang sourceLang message
     printfn "Translation:"
-    printfn "%A" translatedMessage
+    printfn "'%s'" translatedMessage
 
 #if DEBUG
     System.Console.ReadKey(true) |> ignore

@@ -2,7 +2,9 @@
 
 open System.Globalization
 
-let defaultCulture = new CultureInfo("en")
+[<Literal>]
+let defaultLang = "en"
+let defaultCulture = new CultureInfo(defaultLang)
 
 let parentOf culture =
     let cultureInfo = CultureInfo.CreateSpecificCulture culture
@@ -19,6 +21,16 @@ module Language =
         with
         | _ -> None
 
+    let fallbackLanguage = Language defaultLang
+
     let get (Language cultureCode) = cultureCode
 
-    let fallbackLanguage = Language "en"
+    let getSafe (language:T option) =
+        match language with
+        | None -> get fallbackLanguage
+        | Some l -> get l
+    
+    let toString (language:T option) =
+        match language with
+        | None -> "unknown"
+        | Some l -> get l

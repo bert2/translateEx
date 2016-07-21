@@ -23,8 +23,5 @@ let getMessageResources language =
     |> Seq.map toResource
 
 let getMessage language (ResourceKey key) =
-    let resources = 
-        match language with
-        | None -> loadResourcesFor <| get fallbackLanguage
-        | Some (Language l) -> loadResourcesFor l
+    let resources = loadResourcesFor <| getSafe language
     resources.GetString(key)
