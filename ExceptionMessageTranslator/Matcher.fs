@@ -1,6 +1,7 @@
 ﻿module Matcher
 
 open System.Collections
+open FSharp.Collections.ParallelSeq
 open LongestCommonSubsequence
 open LevenshteinDistance
 
@@ -34,7 +35,7 @@ let private getMatchScore targetString (MatchCandidate (id, candiateString)) =
 
 let findBestMatch target candidates =
     candidates
-    |> Seq.map (getMatchScore target)
+    |> PSeq.map (getMatchScore target)
     |> Seq.sortByDescending score
     |> Seq.head
     |> id
