@@ -16,8 +16,9 @@ module Language =
 
     let create (cultureCode:string) = 
         try
-            let _ = CultureInfo.CreateSpecificCulture cultureCode
-            Some (Language cultureCode)
+            let c = CultureInfo.CreateSpecificCulture cultureCode
+            if c = CultureInfo.InvariantCulture then None
+            else Some (Language cultureCode)
         with
         | _ -> None
 

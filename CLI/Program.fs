@@ -1,15 +1,21 @@
 ﻿module ExceptionMessageTranslator
 
+open System
 open Language
 open Translator
 
 type Args = Args of Language.T option * Language.T option * string
 
 let private gatherUserInputs =
-    Args (
-        Language.create "de", 
-        Language.create "fr", 
-        "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
+    printf "Enter IETF code of target language. Leave empty to translate to 'en-US'.\n>"
+    let targetLang = Console.ReadLine()
+    printf "Enter IETF code of source language. Leave empty to try all languages (slow!).\n>"
+    let sourceLang = Console.ReadLine()
+    printf "Enter the exception message to translate.\n>"
+    let message = Console.ReadLine()
+    printfn ""
+//    Args (Language.create "de", Language.create "fr", "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
+    Args (Language.create targetLang, Language.create sourceLang, message)
 
 let private parseArguments (argv:string []) =
     match argv.Length with
@@ -21,9 +27,9 @@ let private parseArguments (argv:string []) =
 [<EntryPoint>]
 let main argv = 
     let (Args (targetLang, sourceLang, message)) = parseArguments argv
-    printfn "Translating message from '%s' to '%s'..." (Language.toString sourceLang) (Language.getSafe targetLang)
+    printfn "Translating from '%s' to '%s'..." (Language.toString sourceLang) (Language.getSafe targetLang)
     let translatedMessage = translate targetLang sourceLang message
-    printfn "Translation:"
+    printfn "\nTranslation:"
     printfn "'%s'" translatedMessage
 
 #if DEBUG
