@@ -7,15 +7,15 @@ open Translator
 type Args = Args of Language.T option * Language.T option * string
 
 let private gatherUserInputs =
-//    printf "Enter IETF code of target language. Leave empty to translate to 'en-US'.\n>"
-//    let targetLang = Console.ReadLine()
-//    printf "Enter IETF code of source language. Leave empty to try all languages (slow!).\n>"
-//    let sourceLang = Console.ReadLine()
-//    printf "Enter the exception message to translate.\n>"
-//    let message = Console.ReadLine()
-//    printfn ""
-//    Args (Language.create targetLang, Language.create sourceLang, message)
-    Args (Language.create "de", Language.create "fr", "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
+    printf "Enter IETF code of target language. Leave empty to translate to 'en-US'.\n>"
+    let targetLang = Console.ReadLine()
+    printf "Enter IETF code of source language. Leave empty to try all languages (slow!).\n>"
+    let sourceLang = Console.ReadLine()
+    printf "Enter the exception message to translate.\n>"
+    let message = Console.ReadLine()
+    printfn ""
+    Args (Language.create targetLang, Language.create sourceLang, message)
+//    Args (Language.create "de", Language.create "fr", "Impossible de créer une instance de ExceptionMessageTranslator, car il s'agit d'une classe abstraite.")
 
 let private parseArguments (argv:string []) =
     match argv.Length with
