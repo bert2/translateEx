@@ -112,8 +112,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="TranslateController.fs" />
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="TranslateController.fs" />
+    <Compile Include="DefaultParametersFilter.fs" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
     <Compile Include="Global.asax.fs">

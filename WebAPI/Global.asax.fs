@@ -25,3 +25,4 @@ type Global() =
 
     member x.Application_Start() =
         GlobalConfiguration.Configure(Action<_> Global.RegisterWebApi)
+        GlobalConfiguration.Configuration.Filters.Add(new DefaultParametersFilter())
