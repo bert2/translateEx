@@ -37,31 +37,6 @@
     <DocumentationFile>bin\Release\CLI.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.fs" />
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExceptionMessages\ExceptionMessages.fsproj">
-      <Name>ExceptionMessages</Name>
-      <Project>{afd45e65-67aa-4a2a-b4f0-a1688764066d}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\ExceptionMessageTranslator\ExceptionMessageTranslator.fsproj">
-      <Name>ExceptionMessageTranslator</Name>
-      <Project>{3879c546-4537-42e9-b3ac-179f5846bda3}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
@@ -78,6 +53,31 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <ItemGroup>
+    <Compile Include="Program.fs" />
+    <None Include="App.config" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <ProjectReference Include="..\ExceptionMessages\ExceptionMessages.fsproj">
+      <Name>ExceptionMessages</Name>
+      <Project>{afd45e65-67aa-4a2a-b4f0-a1688764066d}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\ExceptionMessageTranslator\ExceptionMessageTranslator.fsproj">
+      <Name>ExceptionMessageTranslator</Name>
+      <Project>{3879c546-4537-42e9-b3ac-179f5846bda3}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
